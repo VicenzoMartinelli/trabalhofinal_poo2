@@ -16,34 +16,33 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "Usuario.findByEmailAndSenha",
             query = "from Usuario u "
-                + " where u.email=:email AND u.senha=:senha"),
-    @NamedQuery(name = "Usuario.findAll",
-            query = "Select u from Usuario u")
+            + " where (u.email=:filtro OR u.nome = :filtro)"
+            + "AND u.senha=:senha")
 })
-public class Usuario implements AbstractModel<Long>{
+public class Usuario implements AbstractModel<Long> {
+
     private static final long serialVersionUID = 1L;
-    public static final String FIND_ALL = "Usuario.findAll";
-    public static final String FIND_BY_EMAIL_AND_SENHA=
-            "Usuario.findByEmailAndSenha";
+    public static final String FIND_BY_EMAIL_AND_SENHA
+            = "Usuario.findByEmailAndSenha";
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @Column(length = 100, nullable = false)
     private String nome;
-    
+
     @Column(length = 11, nullable = false)
     private String cpf;
-    
+
     @Column(length = 100, nullable = false)
     private String email;
-    
+
     @Column(length = 512, nullable = false)
     private String senha;
-    
+
     @Column(nullable = false)
     private Float comissaoPerc;
-    
+
     @Lob
     @Column()
     private byte[] foto;
@@ -97,7 +96,6 @@ public class Usuario implements AbstractModel<Long>{
         this.comissaoPerc = comissaoPerc;
     }
 
-   
     public byte[] getFoto() {
         return foto;
     }
@@ -135,5 +133,5 @@ public class Usuario implements AbstractModel<Long>{
     public String toString() {
         return this.nome;
     }
-    
+
 }
