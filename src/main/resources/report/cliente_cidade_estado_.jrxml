@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cliente_cidade_estado_" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="be63f6f0-063a-4707-98f2-093bea3a3f31">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter (2)"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="TITULO" class="java.lang.String"/>
+	<parameter name="SIGLA_FILTRO" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT 
+   ci.nome,
+	e.sigla,
+	c.cpf,
+	c.nome as nomecliente
+FROM cliente AS c,
+	estado AS e
+	INNER JOIN cidade as ci ON 
+	 ci.estado_id = e.id
+WHERE e.sigla like $P{SIGLA_FILTRO}
+ORDER BY ci.nome, c.nome]]>
+	</queryString>
+	<field name="nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nome"/>
+	</field>
+	<field name="sigla" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="sigla"/>
+	</field>
+	<field name="cpf" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="cpf"/>
+	</field>
+	<field name="nomecliente" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nomecliente"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="52" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="550" height="52" uuid="24c03074-67fb-486c-9cc5-7cc216f6e0a6"/>
+				<textElement textAlignment="Center">
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TITULO} + " " + $P{SIGLA_FILTRO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="30" uuid="362257a8-8a41-4032-8632-7abebcc33fe8">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bb2fab84-d9a5-4467-9e60-4f7301e7455f"/>
+				</reportElement>
+				<text><![CDATA[Cidade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="0" width="100" height="30" uuid="593baee8-0ad6-45d5-8d5f-4ed51e5afa86">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a19983e0-3361-4512-ade0-e15f912ac260"/>
+				</reportElement>
+				<text><![CDATA[Nome Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="0" width="100" height="30" uuid="8ea5f034-6bf3-421d-b9dc-0bd3cbec483e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cee77ff0-f677-4b5a-8772-f4b66673f52e"/>
+				</reportElement>
+				<text><![CDATA[CPF]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="41" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="30" uuid="bdbe87f1-d455-4539-85dd-1407b0b083c7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bb2fab84-d9a5-4467-9e60-4f7301e7455f"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="30" width="560" height="1" uuid="3cf25b65-3c36-4f8e-99f6-37c59c1fba6d"/>
+			</line>
+			<textField>
+				<reportElement x="100" y="0" width="100" height="30" uuid="f05a3641-9b6e-44a6-a238-637d373c88af">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a19983e0-3361-4512-ade0-e15f912ac260"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{nomecliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="0" width="100" height="30" uuid="cd459dbd-b8c2-48d8-a282-7797929b13d7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cee77ff0-f677-4b5a-8772-f4b66673f52e"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{cpf}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

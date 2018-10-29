@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="2_produtoByCategoria" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6487ee5d-0420-4c8d-8d91-8f2303c38819">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter (2)"/>
+	<parameter name="TITULO" class="java.lang.String"/>
+	<parameter name="LOGO_CLIENTE" class="java.awt.Image"/>
+	<parameter name="IDCATEGORIA" class="java.lang.Long"/>
+	<parameter name="NOME_CATEGORIA" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT p.nome, p.descricao, p.valor
+FROM Produto P 
+INNER JOIN Categoria c ON p.categoria_id = c.id
+WHERE c.id = $P{IDCATEGORIA}]]>
+	</queryString>
+	<field name="nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nome"/>
+	</field>
+	<field name="descricao" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="descricao"/>
+	</field>
+	<field name="valor" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="valor"/>
+	</field>
+	<title>
+		<band height="87" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="160" height="87" uuid="affc0b69-eb1e-442b-a05f-63922bd51707"/>
+				<imageExpression><![CDATA[$P{LOGO_CLIENTE}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="160" y="0" width="390" height="87" uuid="f71c4800-aea2-4968-8d33-522b549ad20d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TITULO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="36" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="555" height="30" uuid="feff64e5-c45b-48f1-a1e0-3fb2568c99f7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Categoria: " + $P{NOME_CATEGORIA}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="37" splitType="Stretch">
+			<staticText>
+				<reportElement x="160" y="0" width="320" height="30" uuid="912f7f04-360f-4905-8d96-62f5c25fa63f"/>
+				<text><![CDATA[Descrição]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="160" height="30" uuid="c0510d43-a6e2-4ffc-9653-acb3c5298d50"/>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="480" y="0" width="75" height="30" uuid="6a187be8-b404-468a-be2c-b3af30d3ca91"/>
+				<text><![CDATA[Valor]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="35" splitType="Stretch">
+			<textField>
+				<reportElement x="160" y="0" width="320" height="30" uuid="4fdb7881-d18c-48a7-a40d-30fdc9269c5b"/>
+				<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="157" height="30" uuid="8bf75723-4076-421b-b225-fa906c21c4a1"/>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="480" y="0" width="75" height="30" uuid="a244b250-8180-4831-8fd5-f9a0277c0ea5"/>
+				<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="30" width="560" height="1" uuid="fdc8ce59-dd35-4b8f-a75b-0d5d1bbb6d1e"/>
+			</line>
+		</band>
+	</detail>
+</jasperReport>

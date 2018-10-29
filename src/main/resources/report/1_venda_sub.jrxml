@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="venda_aula3_sub" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="64c2753e-a91e-4a9e-98d6-26915762cc8b">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Conexao_aula3"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="VENDA_ID" class="java.lang.Long"/>
+	<queryString>
+		<![CDATA[SELECT 
+	p.nome,
+	vp.quantidade,
+	vp.valor,
+	(vp.quantidade * vp.valor) as total
+FROM VENDAPRODUTO vp 
+INNER JOIN produto p ON vp.produto_id = p.id
+WHERE vp.venda_id = $P{VENDA_ID}]]>
+	</queryString>
+	<field name="nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nome"/>
+	</field>
+	<field name="quantidade" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="quantidade"/>
+	</field>
+	<field name="valor" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="valor"/>
+	</field>
+	<field name="total" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="total"/>
+	</field>
+	<variable name="VALOR_TOTAL" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{total}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="34">
+			<staticText>
+				<reportElement x="0" y="0" width="220" height="30" uuid="cf0cd964-c1f7-4f94-b8f8-b600fc599779">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2b96f33d-b849-4da3-912e-837cb748cbe2"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="220" y="0" width="100" height="30" uuid="fed2a5c0-c073-4e76-950f-fcd9acd9ac93">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2a994c3f-2984-41b9-9b58-f443bc84ff2d"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Quantidade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="320" y="0" width="100" height="30" uuid="edee03d8-65fe-43bb-a5a1-a24b24218343">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0cf8e403-e29f-4334-8e07-df86a60e2f29"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="420" y="0" width="100" height="30" uuid="620661c1-3d88-4eb3-8f8b-2781fe41e9f7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9300327c-42a8-4662-ae9e-6be3674b7e82"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[total]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="37" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="220" height="30" uuid="f7c8e24a-dbb4-4c6f-bd19-7492d966d5bc">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2b96f33d-b849-4da3-912e-837cb748cbe2"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="220" y="0" width="100" height="30" uuid="1815739c-0285-40ab-9258-8d14bc843f1b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2a994c3f-2984-41b9-9b58-f443bc84ff2d"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{quantidade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="0" width="100" height="30" uuid="d6581191-c95c-4787-8d36-4d8744ea0808">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0cf8e403-e29f-4334-8e07-df86a60e2f29"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="420" y="0" width="100" height="30" uuid="c4f00d5e-3914-41de-a8f8-1d30f1903941">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9300327c-42a8-4662-ae9e-6be3674b7e82"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="63">
+			<line>
+				<reportElement x="0" y="0" width="560" height="1" uuid="2f205faa-b091-4465-a31e-7e23d26ccf57"/>
+			</line>
+			<staticText>
+				<reportElement x="220" y="0" width="100" height="30" uuid="a17c020f-7125-4afb-9740-bac5e519511a"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total da Venda:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="320" y="4" width="200" height="30" uuid="a31af180-0e5c-4f8b-8b45-f0717fdff0a4"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{VALOR_TOTAL} + " R$"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="30" width="560" height="1" uuid="816e8a89-35a3-4fab-9159-3314510aa8a9"/>
+			</line>
+		</band>
+	</columnFooter>
+</jasperReport>
